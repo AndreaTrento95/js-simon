@@ -41,22 +41,31 @@ $(document).ready(function(){
     // al click di btn...
     $('#btn').click(function(){
 
-        if(arrNumber.length < 5){
+        if(arrNumber.length < 6){
             arrNumber.push($('input').val());
             $('input').val('');
-            console.log(arrNumber);
-        }
+        };
 
-        if(arrNumber.length === 4){
+        // dopo aver inserito il quinto numero...
+        if(arrNumber.length === 5){
+            // nascondo btn-box
             $('#btn-box').hide();
+            // stampo 'calcolo in corso'
             printOutput('Calcolo in corso...', '#display');
+            // dopo tre secondi...
             setTimeout(function(){
-                if(arrNumber.toString() === arrRandom.toString()){
-                    result.push(arrNumber.toString() === arrRandom.toString())
-                    console.log(result);
-                }else{
-                    printOutput('Hai perso', '#display');
-                }
+                for(var result_numRandom of arrRandom){
+                    console.log(result_numRandom);
+                    
+                };
+                for(var result_numUtente of arrNumber){
+                    if(result_numRandom === result_numUtente ){
+                        console.log('Hai vinto');
+                    }else{
+                        console.log('HAI perso')
+                    }
+                };
+               
             }, 3000);
         }
     });
