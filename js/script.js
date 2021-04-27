@@ -41,6 +41,7 @@ $(document).ready(function(){
     // al click di btn...
     $('#btn').click(function(){
 
+        // aggiungo i 5 numeri input a arrNumber
         if(arrNumber.length < 6){
             arrNumber.push($('input').val());
             $('input').val('');
@@ -52,19 +53,20 @@ $(document).ready(function(){
             $('#btn-box').hide();
             // stampo 'calcolo in corso'
             printOutput('Calcolo in corso...', '#display');
+
+            for(var result_numUtente of arrNumber){
+                if(arrRandom.includes(parseInt(result_numUtente)) === true){
+                    result.push(result_numUtente);
+                };
+            };
+
             // dopo tre secondi...
             setTimeout(function(){
-                for(var result_numRandom of arrRandom){
-                    console.log(result_numRandom);
-                    
-                };
-                for(var result_numUtente of arrNumber){
-                    if(result_numRandom === result_numUtente ){
-                        console.log('Hai vinto');
-                    }else{
-                        console.log('HAI perso')
-                    }
-                };
+                if(result.length === 0){
+                    printOutput('HAI PERSO');
+                }else{
+                    printOutput('Hai indovinato i seguenti numeri ' + result.toString(), '#display');
+                }
                
             }, 3000);
         }
